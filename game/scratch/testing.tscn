@@ -1,39 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp1tij6u6jakl"]
+[gd_scene load_steps=3 format=3 uid="uid://cp1tij6u6jakl"]
 
-[ext_resource type="Texture2D" uid="uid://d0paf5ytj8wqj" path="res://assets/export/player/player.png" id="1_cvbgo"]
-[ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_cvnpj"]
-[ext_resource type="Script" uid="uid://culeydjthv3kf" path="res://game/player/movement.gd" id="3_r2v0q"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cvnpj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_cvbgo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2v0q"]
-height = 48.0
+[ext_resource type="PackedScene" uid="uid://bunll36biwwdj" path="res://game/player/player.tscn" id="1_cvbgo"]
+[ext_resource type="PackedScene" uid="uid://b74sdwfvgah1m" path="res://game/scratch/dummy.tscn" id="2_cvnpj"]
 
 [node name="Testing" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_cvbgo")]
 position = Vector2(33, 148)
-script = ExtResource("1_cvnpj")
-metadata/_custom_type_script = "uid://dnjjgaf7whjnl"
-metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_cvnpj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-visible = false
-position = Vector2(-3, -2)
-shape = SubResource("CapsuleShape2D_r2v0q")
-
-[node name="MovementComponent" type="Node" parent="Player"]
-script = ExtResource("3_r2v0q")
-metadata/_custom_type_script = "uid://culeydjthv3kf"
+[node name="Sprite2D" parent="." instance=ExtResource("2_cvnpj")]
+position = Vector2(189, 145)
