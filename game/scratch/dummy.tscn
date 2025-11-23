@@ -1,18 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://b74sdwfvgah1m"]
+[gd_scene load_steps=6 format=3 uid="uid://b74sdwfvgah1m"]
 
 [ext_resource type="Texture2D" uid="uid://jv5hs1k5ug8a" path="res://icon.svg" id="1_46vfk"]
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="2_mkeq4"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="3_deoho"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46vfk"]
+size = Vector2(22.999998, 24)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4714"]
 size = Vector2(128, 133.56522)
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="AnimatableBody2D" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.50000095, 0)
+shape = SubResource("RectangleShape2D_46vfk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.17968751, 0.1796875)
 texture = ExtResource("1_46vfk")
 metadata/_edit_group_ = true
 
 [node name="HurtBox" type="Area2D" parent="."]
+scale = Vector2(0.17968751, 0.1796875)
 script = ExtResource("2_mkeq4")
 metadata/_custom_type_script = "uid://hqy6kpla8egj"
 
