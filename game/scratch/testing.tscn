@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp1tij6u6jakl"]
+[gd_scene load_steps=4 format=3 uid="uid://cp1tij6u6jakl"]
 
 [ext_resource type="PackedScene" uid="uid://bunll36biwwdj" path="res://game/player/player.tscn" id="1_cvbgo"]
+[ext_resource type="Script" uid="uid://dce40a2lh4cs0" path="res://game/level/level.gd" id="1_r2v0q"]
 [ext_resource type="PackedScene" uid="uid://b74sdwfvgah1m" path="res://game/scratch/dummy.tscn" id="2_cvnpj"]
 
-[node name="Testing" type="Node2D"]
+[node name="Testing" type="Node2D" node_paths=PackedStringArray("player", "enemy")]
+script = ExtResource("1_r2v0q")
+player = NodePath("Player")
+enemy = NodePath("Sprite2D")
 
 [node name="Player" parent="." instance=ExtResource("1_cvbgo")]
 position = Vector2(33, 148)

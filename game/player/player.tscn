@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bunll36biwwdj"]
+[gd_scene load_steps=22 format=3 uid="uid://bunll36biwwdj"]
 
 [ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_8soms"]
 [ext_resource type="Texture2D" uid="uid://d0paf5ytj8wqj" path="res://assets/export/player/player.png" id="2_4ste8"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://b3druuyg3e8pi" path="res://assets/sounds/hit/Hit15.wav" id="5_4ste8"]
 [ext_resource type="Script" uid="uid://byjihmwux7yx5" path="res://game/player/combat_controller.gd" id="7_anr75"]
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="8_epvkq"]
+[ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="8_j0mij"]
+[ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="9_5ghna"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epvkq"]
 atlas = ExtResource("3_anr75")
@@ -55,6 +57,33 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anr75"]
 
+[sub_resource type="Animation" id="Animation_epvkq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_anr75"]
 resource_name = "punch"
 length = 0.15
@@ -81,33 +110,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_epvkq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/HitBox/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvkq"]
@@ -175,6 +177,10 @@ audioPlayer = NodePath("../HitAudio")
 animationPlayer = NodePath("../AnimationPlayer")
 metadata/_custom_type_script = "uid://byjihmwux7yx5"
 
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("8_j0mij")
+metadata/_custom_type_script = "uid://dbcvmexvelnb0"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_epvkq")
@@ -192,3 +198,7 @@ shape = SubResource("CapsuleShape2D_5ghna")
 [node name="CollisionPhysics" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 2)
 shape = SubResource("CapsuleShape2D_epvkq")
+
+[node name="Fighter" type="Node" parent="."]
+script = ExtResource("9_5ghna")
+metadata/_custom_type_script = "uid://3u30isggth2w"

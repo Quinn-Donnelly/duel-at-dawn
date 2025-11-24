@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b74sdwfvgah1m"]
+[gd_scene load_steps=8 format=3 uid="uid://b74sdwfvgah1m"]
 
 [ext_resource type="Texture2D" uid="uid://jv5hs1k5ug8a" path="res://icon.svg" id="1_46vfk"]
+[ext_resource type="Script" uid="uid://c0rwv53s0wcjk" path="res://game/ai/ai_controller.gd" id="1_deoho"]
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="2_mkeq4"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="3_deoho"]
+[ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="5_5cx01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46vfk"]
 size = Vector2(22.999998, 24)
@@ -11,6 +13,7 @@ size = Vector2(22.999998, 24)
 size = Vector2(128, 133.56522)
 
 [node name="AnimatableBody2D" type="StaticBody2D"]
+script = ExtResource("1_deoho")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.50000095, 0)
@@ -33,3 +36,7 @@ shape = SubResource("RectangleShape2D_q4714")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_deoho")
 metadata/_custom_type_script = "uid://dbcvmexvelnb0"
+
+[node name="Fighter" type="Node" parent="."]
+script = ExtResource("5_5cx01")
+metadata/_custom_type_script = "uid://3u30isggth2w"
