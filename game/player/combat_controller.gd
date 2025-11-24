@@ -6,6 +6,9 @@ extends Node
 @export var animationPlayer: AnimationPlayer
 
 func _ready() -> void:
+	assert(animationPlayer, "CombatController must have an animation Player")
+	assert(audioPlayer, "CombatController must have an audio player")
+	assert(hitBox, "Combat controller must have a hitbox")
 	hitBox.hit.connect(self._on_hit)
 
 func _unhandled_input(_event: InputEvent) -> void:
