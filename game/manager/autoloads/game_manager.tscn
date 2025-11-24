@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmcl38f26dhj1"]
+
+[ext_resource type="Script" uid="uid://cv1s7x0da6oh8" path="res://game/manager/autoloads/game_manager.gd" id="1_tp1va"]
+[ext_resource type="Script" uid="uid://cfygodpjtn0gj" path="res://game/manager/entity_manager/fighter_manager.gd" id="2_sypul"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_tp1va")
+
+[node name="FighterManager" type="Node" parent="."]
+script = ExtResource("2_sypul")
+metadata/_custom_type_script = "uid://cfygodpjtn0gj"

@@ -26,4 +26,5 @@ func reset() -> void:
 	current_health = max_health
 
 func _exit_tree() -> void:
-	owner.remove_meta(Constants.HEALTH_COMPONENT)
+	if owner:
+		owner.remove_meta(Constants.HEALTH_COMPONENT)

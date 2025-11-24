@@ -1,5 +1,7 @@
 extends Node
 
+@onready var fighterManager: FighterManager = $FighterManager
+
 var mainMenuScene: PackedScene = preload("res://game/main_menu/main_menu.tscn")
 var levelScenes: Array[PackedScene] = [
 	load("res://game/scratch/testing.tscn")
@@ -9,8 +11,12 @@ var levelScenes: Array[PackedScene] = [
 var _current_level: int = -1
 
 func _ready() -> void:
+	assert(fighterManager, "GameManager must have a fighter manager")
 	EventBus.start_game.connect(self._on_start_game)
 	EventBus.level_end.connect(self._on_level_end)
+	
+func get_fighter_manager() -> FighterManager:
+	return fighterManager
 	
 func _load_level(number: int) -> void:
 	assert(number<levelScenes.size(), "Attempted to load level that doesn't exist in GameManager")

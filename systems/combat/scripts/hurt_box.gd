@@ -17,4 +17,5 @@ func _on_hurt_entered(area: Area2D) -> void:
 		area.dealt_damage(current_health - remaining_health)
 
 func _exit_tree() -> void:
-	owner.remove_meta(Constants.HURT_COMPONENT)
+	if owner:
+		owner.remove_meta(Constants.HURT_COMPONENT)

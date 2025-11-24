@@ -23,4 +23,5 @@ func get_damage() -> int:
 	return damage
 	
 func _exit_tree() -> void:
-	owner.remove_meta(Constants.HIT_COMPONENT)
+	if owner:
+		owner.remove_meta(Constants.HIT_COMPONENT)
