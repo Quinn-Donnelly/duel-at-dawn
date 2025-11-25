@@ -17,7 +17,10 @@ func _ready() -> void:
 	
 func get_fighter_manager() -> FighterManager:
 	return fighterManager
-	
+
+func get_current_level() -> Level:
+	return get_tree().current_scene as Level
+
 func _load_level(number: int) -> void:
 	assert(number<levelScenes.size(), "Attempted to load level that doesn't exist in GameManager")
 	get_tree().change_scene_to_packed(levelScenes[number])

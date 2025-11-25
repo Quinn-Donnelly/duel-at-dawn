@@ -1,4 +1,4 @@
-class_name level
+class_name Level
 extends Node
 
 ## Player charecter reference
@@ -17,6 +17,13 @@ func _ready() -> void:
 	assert(enemy, "Level must have an enemy configured")
 	oppenentFighter = enemy.get_fighter()
 	oppenentFighter.died.connect(self._on_enemy_died)
+	_round_start()
+
+func get_player() -> Fighter:
+	return playerFighter
+	
+func get_opponent() -> Fighter:
+	return oppenentFighter
 
 func _round_start() -> void:
 	EventBus.level_start.emit()
