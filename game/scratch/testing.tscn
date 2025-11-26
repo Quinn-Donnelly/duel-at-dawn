@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp1tij6u6jakl"]
+[gd_scene load_steps=5 format=3 uid="uid://cp1tij6u6jakl"]
 
 [ext_resource type="PackedScene" uid="uid://bunll36biwwdj" path="res://game/player/player.tscn" id="1_cvbgo"]
 [ext_resource type="Script" uid="uid://dce40a2lh4cs0" path="res://game/level/level.gd" id="1_r2v0q"]
 [ext_resource type="PackedScene" uid="uid://cgv2hosld1mii" path="res://game/ai/ai_fighter.tscn" id="3_r2v0q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2v0q"]
+size = Vector2(20, 190)
 
 [node name="Testing" type="Node2D" node_paths=PackedStringArray("player", "enemy")]
 script = ExtResource("1_r2v0q")
@@ -10,7 +13,23 @@ player = NodePath("Player")
 enemy = NodePath("AiFighter")
 
 [node name="Player" parent="." instance=ExtResource("1_cvbgo")]
-position = Vector2(33, 148)
+position = Vector2(88, 148)
 
 [node name="AiFighter" parent="." instance=ExtResource("3_r2v0q")]
-position = Vector2(289, 148)
+position = Vector2(226, 148)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-10, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 85)
+shape = SubResource("RectangleShape2D_r2v0q")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(330, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, 85)
+shape = SubResource("RectangleShape2D_r2v0q")

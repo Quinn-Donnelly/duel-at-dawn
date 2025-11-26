@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cgv2hosld1mii"]
+[gd_scene load_steps=27 format=3 uid="uid://cgv2hosld1mii"]
 
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="1_7ylxl"]
 [ext_resource type="Script" uid="uid://c0rwv53s0wcjk" path="res://game/ai/ai_controller.gd" id="1_yh5bw"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://ntxpd481rtl6" path="res://assets/export/player/player-walk.png" id="3_kbkwk"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="7_kbkwk"]
 [ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="8_lxvoj"]
+[ext_resource type="Script" uid="uid://d3bpuseywaxhh" path="res://systems/state_machine/state_machine.gd" id="9_lv7ia"]
+[ext_resource type="Script" uid="uid://bxqrd2hvpmupd" path="res://game/ai/combat_state_machine/idle_ai_state.gd" id="10_rhtl5"]
+[ext_resource type="Script" uid="uid://dhr3vdcsrer68" path="res://game/ai/combat_state_machine/move_away_ai_state.gd" id="11_cqx6r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ylxl"]
 blend_mode = 1
@@ -113,7 +116,7 @@ animations = [{
 radius = 9.0
 height = 58.0
 
-[node name="AiFighter" type="AnimatableBody2D"]
+[node name="AiFighter" type="CharacterBody2D"]
 script = ExtResource("1_yh5bw")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
@@ -151,3 +154,16 @@ metadata/_custom_type_script = "uid://dbcvmexvelnb0"
 [node name="Fighter" type="Node" parent="."]
 script = ExtResource("8_lxvoj")
 metadata/_custom_type_script = "uid://3u30isggth2w"
+
+[node name="CombatStateMachine" type="Node2D" parent="."]
+script = ExtResource("9_lv7ia")
+metadata/_custom_type_script = "uid://d3bpuseywaxhh"
+
+[node name="Idle" type="Node2D" parent="CombatStateMachine"]
+script = ExtResource("10_rhtl5")
+mask = 1
+metadata/_custom_type_script = "uid://tm8yi6ie27ci"
+
+[node name="MoveAway" type="Node2D" parent="CombatStateMachine"]
+script = ExtResource("11_cqx6r")
+metadata/_custom_type_script = "uid://tm8yi6ie27ci"

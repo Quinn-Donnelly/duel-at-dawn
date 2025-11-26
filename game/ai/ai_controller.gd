@@ -1,5 +1,5 @@
 class_name AiController
-extends Node
+extends CharacterBody2D
 
 @onready var fighter: Fighter = $Fighter
 var healthComponent: HealthComponent
@@ -14,3 +14,6 @@ func get_fighter() -> Fighter:
 	
 func _on_health_depleted() -> void:
 	queue_free()
+
+func _process(_delta: float) -> void:
+	move_and_slide()

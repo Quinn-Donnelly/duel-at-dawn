@@ -1,5 +1,5 @@
 class_name StateMachine
-extends Node
+extends Node2D
 
 ## The inital state to load in the state machine will default to first state
 @export var initalState: State
