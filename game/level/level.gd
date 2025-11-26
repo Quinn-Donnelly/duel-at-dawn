@@ -13,9 +13,11 @@ var oppenentFighter: Fighter
 func _ready() -> void:
 	assert(player, "Level must have a player configured")
 	playerFighter = player.get_fighter()
+	assert(playerFighter, "player must have a fighter configured")
 	playerFighter.died.connect(self._on_player_died)
 	assert(enemy, "Level must have an enemy configured")
 	oppenentFighter = enemy.get_fighter()
+	assert(oppenentFighter, "opponenet must have a fighter configured")
 	oppenentFighter.died.connect(self._on_enemy_died)
 	_round_start()
 

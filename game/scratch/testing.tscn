@@ -2,15 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://bunll36biwwdj" path="res://game/player/player.tscn" id="1_cvbgo"]
 [ext_resource type="Script" uid="uid://dce40a2lh4cs0" path="res://game/level/level.gd" id="1_r2v0q"]
-[ext_resource type="PackedScene" uid="uid://b74sdwfvgah1m" path="res://game/scratch/dummy.tscn" id="2_cvnpj"]
+[ext_resource type="PackedScene" uid="uid://cgv2hosld1mii" path="res://game/ai/ai_fighter.tscn" id="3_r2v0q"]
 
 [node name="Testing" type="Node2D" node_paths=PackedStringArray("player", "enemy")]
 script = ExtResource("1_r2v0q")
 player = NodePath("Player")
-enemy = NodePath("Sprite2D")
+enemy = NodePath("AiFighter")
 
 [node name="Player" parent="." instance=ExtResource("1_cvbgo")]
 position = Vector2(33, 148)
 
-[node name="Sprite2D" parent="." instance=ExtResource("2_cvnpj")]
-position = Vector2(189, 145)
+[node name="AiFighter" parent="." instance=ExtResource("3_r2v0q")]
+position = Vector2(289, 148)
