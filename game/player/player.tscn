@@ -309,10 +309,10 @@ metadata/_custom_type_script = "uid://byjihmwux7yx5"
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_j0mij")
+max_health = 20
 metadata/_custom_type_script = "uid://dbcvmexvelnb0"
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 script = ExtResource("8_epvkq")
 metadata/_custom_type_script = "uid://hqy6kpla8egj"
 

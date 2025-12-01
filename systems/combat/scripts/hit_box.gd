@@ -13,11 +13,10 @@ func _ready() -> void:
 	
 func _on_hit(area: Area2D) -> void:
 	if area is HurtBox and area.owner != owner:
-		print("we've struck, damage not yet confirmed")
 		hit.emit()
 
-func dealt_damage(damage_dealt: int) -> void:
-	print("confirmed we dealth %d damage" % damage_dealt)
+func dealt_damage(_damage_dealt: int) -> void:
+	pass
 
 func get_damage() -> int:
 	return damage

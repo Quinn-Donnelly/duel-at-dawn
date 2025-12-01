@@ -23,7 +23,7 @@ func process(_delta: float) -> void:
 		animation_player.play("punch")
 
 func exit() -> void:
-	animation_player.animation_changed.disconnect(self._on_animation_finished)
+	animation_player.animation_finished.disconnect(self._on_animation_finished)
 
 func _on_animation_finished(animation_name: String) -> void:
 	if animation_name == "punch":
