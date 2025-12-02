@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bunll36biwwdj"]
+[gd_scene load_steps=42 format=3 uid="uid://bunll36biwwdj"]
 
 [ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_8soms"]
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="2_j0mij"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bx6s2y2lmgf5f" path="res://systems/combat/scripts/hit_box.gd" id="4_5fytw"]
 [ext_resource type="Texture2D" uid="uid://ntxpd481rtl6" path="res://assets/export/player/player-walk.png" id="4_gb4gm"]
 [ext_resource type="AudioStream" uid="uid://b3druuyg3e8pi" path="res://assets/sounds/hit/Hit15.wav" id="5_4ste8"]
+[ext_resource type="Texture2D" uid="uid://bq2ju30n1yl3n" path="res://assets/player-uppercut.png" id="5_n270p"]
 [ext_resource type="Script" uid="uid://byjihmwux7yx5" path="res://game/player/combat_controller.gd" id="7_anr75"]
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="8_epvkq"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="8_j0mij"]
@@ -52,6 +53,18 @@ region = Rect2(128, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n270p"]
 atlas = ExtResource("3_anr75")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brh81"]
+atlas = ExtResource("5_n270p")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib3u0"]
+atlas = ExtResource("5_n270p")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp242"]
+atlas = ExtResource("5_n270p")
+region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gh012"]
 atlas = ExtResource("4_gb4gm")
@@ -114,6 +127,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"punch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brh81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib3u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp242")
+}],
+"loop": true,
+"name": &"uppercut",
 "speed": 5.0
 }, {
 "frames": [{
@@ -374,12 +401,80 @@ tracks/4/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_n270p"]
+resource_name = "uppercut"
+length = 0.3667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(15, -2), Vector2(40, -13), Vector2(15, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.36666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"idle", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"uppercut"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gb4gm"]
 _data = {
 &"RESET": SubResource("Animation_j0mij"),
 &"idle": SubResource("Animation_gb4gm"),
 &"jab": SubResource("Animation_brh81"),
 &"punch": SubResource("Animation_5ghna"),
+&"uppercut": SubResource("Animation_n270p"),
 &"walk": SubResource("Animation_uv2nh")
 }
 

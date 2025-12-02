@@ -14,9 +14,14 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("punch"):
 		_punch()
+	if Input.is_action_just_pressed("uppercut"):
+		_uppercut()
 
 func _on_hit() -> void:
 	audioPlayer.play()
 
 func _punch() -> void:
 	animationPlayer.play("jab")
+
+func _uppercut() -> void:
+	animationPlayer.play("uppercut")
