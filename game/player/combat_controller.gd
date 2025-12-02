@@ -19,4 +19,4 @@ func _on_hit() -> void:
 	audioPlayer.play()
 
 func _punch() -> void:
-	animationPlayer.play("punch")
+	animationPlayer.play("jab")

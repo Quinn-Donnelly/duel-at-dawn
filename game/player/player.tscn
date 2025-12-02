@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://bunll36biwwdj"]
+[gd_scene load_steps=37 format=3 uid="uid://bunll36biwwdj"]
 
 [ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_8soms"]
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="2_j0mij"]
 [ext_resource type="Script" uid="uid://culeydjthv3kf" path="res://game/player/movement.gd" id="3_5fytw"]
 [ext_resource type="Texture2D" uid="uid://cx7brbx87qewu" path="res://assets/export/player/punch/player.png" id="3_anr75"]
+[ext_resource type="Texture2D" uid="uid://cvremkildrp4v" path="res://assets/player-jab.png" id="3_uv2nh"]
 [ext_resource type="Script" uid="uid://bx6s2y2lmgf5f" path="res://systems/combat/scripts/hit_box.gd" id="4_5fytw"]
 [ext_resource type="Texture2D" uid="uid://ntxpd481rtl6" path="res://assets/export/player/player-walk.png" id="4_gb4gm"]
 [ext_resource type="AudioStream" uid="uid://b3druuyg3e8pi" path="res://assets/sounds/hit/Hit15.wav" id="5_4ste8"]
@@ -23,6 +24,18 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mv0n"]
 atlas = ExtResource("2_j0mij")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_088ty"]
+atlas = ExtResource("3_uv2nh")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epc1c"]
+atlas = ExtResource("3_uv2nh")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjljb"]
+atlas = ExtResource("3_uv2nh")
+region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0mij"]
 atlas = ExtResource("3_anr75")
@@ -74,6 +87,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_088ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epc1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjljb")
+}],
+"loop": true,
+"name": &"jab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j0mij")
 }, {
 "duration": 1.0,
@@ -108,6 +135,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anr75"]
+size = Vector2(18, 11)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ghna"]
 radius = 8.0
@@ -154,6 +182,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, -2)]
 }
 
 [sub_resource type="Animation" id="Animation_gb4gm"]
@@ -268,10 +308,77 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_brh81"]
+resource_name = "jab"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.06666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jab"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(15, -2), Vector2(35, -7.5), Vector2(15, -2)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.099999994),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"idle", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gb4gm"]
 _data = {
 &"RESET": SubResource("Animation_j0mij"),
 &"idle": SubResource("Animation_gb4gm"),
+&"jab": SubResource("Animation_brh81"),
 &"punch": SubResource("Animation_5ghna"),
 &"walk": SubResource("Animation_uv2nh")
 }
@@ -313,6 +420,7 @@ max_health = 20
 metadata/_custom_type_script = "uid://dbcvmexvelnb0"
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 script = ExtResource("8_epvkq")
 metadata/_custom_type_script = "uid://hqy6kpla8egj"
 
@@ -321,6 +429,7 @@ position = Vector2(-2, -2)
 shape = SubResource("CapsuleShape2D_5ghna")
 
 [node name="CollisionPhysics" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-3, 2)
 shape = SubResource("CapsuleShape2D_epvkq")
 
