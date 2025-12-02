@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cgv2hosld1mii"]
+[gd_scene load_steps=34 format=3 uid="uid://cgv2hosld1mii"]
 
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="1_7ylxl"]
 [ext_resource type="Script" uid="uid://c0rwv53s0wcjk" path="res://game/ai/ai_controller.gd" id="1_yh5bw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="8_lxvoj"]
 [ext_resource type="Script" uid="uid://d084y47ay1vfo" path="res://game/ai/combat_state_machine/ai_combat_state_machine.gd" id="9_rhtl5"]
 [ext_resource type="Script" uid="uid://bxqrd2hvpmupd" path="res://game/ai/combat_state_machine/idle_ai_state.gd" id="10_rhtl5"]
+[ext_resource type="Resource" uid="uid://7s5870avansj" path="res://game/ai/combat_state_machine/combat_stats/ai_combat_stats.tres" id="10_u6qu6"]
 [ext_resource type="Script" uid="uid://dhr3vdcsrer68" path="res://game/ai/combat_state_machine/move_away_ai_state.gd" id="11_cqx6r"]
 [ext_resource type="Script" uid="uid://dhyrkcelthavb" path="res://game/ai/combat_state_machine/attack_ai_state.gd" id="12_cqx6r"]
 
@@ -290,9 +291,11 @@ metadata/_custom_type_script = "uid://dbcvmexvelnb0"
 script = ExtResource("8_lxvoj")
 metadata/_custom_type_script = "uid://3u30isggth2w"
 
-[node name="CombatStateMachine" type="Node2D" parent="."]
+[node name="CombatStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initalState")]
 script = ExtResource("9_rhtl5")
 mask = 1
+stats = ExtResource("10_u6qu6")
+initalState = NodePath("Idle")
 metadata/_custom_type_script = "uid://d3bpuseywaxhh"
 
 [node name="Idle" type="Node2D" parent="CombatStateMachine" node_paths=PackedStringArray("punch_cooldown")]

@@ -12,8 +12,11 @@ func _ready() -> void:
 		if child is State:
 			_availible_states[child.name] = child
 	
+	_current_state = initalState
 	if not initalState and _availible_states.size() > 1:
 		_current_state = _availible_states.values()[0]
+	
+	assert(_current_state, "state must not be nil")
 
 func change_state(state_name: String) -> void:
 	var target_state: State = _availible_states[state_name]

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AiCombatStats" load_steps=2 format=3 uid="uid://7s5870avansj"]
+
+[ext_resource type="Script" uid="uid://gh6ogbg8337y" path="res://game/ai/combat_state_machine/combat_stats/ai_combat_stats.gd" id="1_utydi"]
+
+[resource]
+script = ExtResource("1_utydi")
+punch_range = 25.0
+punch_cooldown = 0.5
