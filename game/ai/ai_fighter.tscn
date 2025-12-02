@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cgv2hosld1mii"]
+[gd_scene load_steps=35 format=3 uid="uid://cgv2hosld1mii"]
 
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="1_7ylxl"]
 [ext_resource type="Script" uid="uid://c0rwv53s0wcjk" path="res://game/ai/ai_controller.gd" id="1_yh5bw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://7s5870avansj" path="res://game/ai/combat_state_machine/combat_stats/ai_combat_stats.tres" id="10_u6qu6"]
 [ext_resource type="Script" uid="uid://dhr3vdcsrer68" path="res://game/ai/combat_state_machine/move_away_ai_state.gd" id="11_cqx6r"]
 [ext_resource type="Script" uid="uid://dhyrkcelthavb" path="res://game/ai/combat_state_machine/attack_ai_state.gd" id="12_cqx6r"]
+[ext_resource type="Script" uid="uid://ik72h4chflbj" path="res://game/ai/combat_state_machine/move_toward_ai_state.gd" id="13_n6bsl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ylxl"]
 blend_mode = 1
@@ -305,6 +306,10 @@ metadata/_custom_type_script = "uid://tm8yi6ie27ci"
 
 [node name="MoveAway" type="Node2D" parent="CombatStateMachine"]
 script = ExtResource("11_cqx6r")
+metadata/_custom_type_script = "uid://tm8yi6ie27ci"
+
+[node name="MoveToward" type="Node2D" parent="CombatStateMachine"]
+script = ExtResource("13_n6bsl")
 metadata/_custom_type_script = "uid://tm8yi6ie27ci"
 
 [node name="Attack" type="Node2D" parent="CombatStateMachine" node_paths=PackedStringArray("punch_cooldown", "animation_player")]

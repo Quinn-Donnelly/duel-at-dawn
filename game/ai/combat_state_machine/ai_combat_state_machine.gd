@@ -8,13 +8,16 @@ extends StateMachine
 class AiCombatState extends Node:
 	var punch_range: float
 	var punch_cooldown: Timer
+	var move_speed: float
 	
 	func _init(stats: AiCombatStats) -> void:
 		punch_cooldown = Timer.new()
 		punch_cooldown.one_shot = true
 		punch_cooldown.wait_time = stats.punch_cooldown if stats else 0.001
+		add_child(punch_cooldown)
 		
 		punch_range = stats.punch_range
+		move_speed = stats.move_speed
 	
 var state: AiCombatState
 

@@ -11,6 +11,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			_availible_states[child.name] = child
+			child.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	_current_state = initalState
 	if not initalState and _availible_states.size() > 1:
@@ -23,6 +24,8 @@ func change_state(state_name: String) -> void:
 	assert(target_state, "%s state does not exist in state machine" % state_name)
 	if _current_state:
 		_current_state.exit()
+		_current_state.process_mode = Node.PROCESS_MODE_DISABLED
+	target_state.process_mode = Node.PROCESS_MODE_INHERIT
 	target_state.enter()
 	_current_state = target_state
 

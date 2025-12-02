@@ -19,7 +19,6 @@ func enter() -> void:
 	
 func process(_delta: float) -> void:
 	if punch_cooldown.is_stopped() and not isPunching:
-		# for now having cooldown at start to avoid potential race
 		isPunching = true
 		var delay = attackDelay.sample(randf())
 		var timer = get_tree().create_timer(delay)
