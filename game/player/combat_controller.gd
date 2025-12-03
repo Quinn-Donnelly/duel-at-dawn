@@ -15,15 +15,12 @@ func _ready() -> void:
 	assert(hitBox, "Combat controller must have a hitbox")
 	hitBox.hit.connect(self._on_hit)
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("punch"):
 		if not isPunching:
 			_punch()
-		
-		if comboWindow:
-			wantsCombo = true
-	if Input.is_action_just_pressed("uppercut"):
-		_uppercut()
+	if Input.is_action_just_pressed("uppercut") and comboWindow:
+		wantsCombo = true
 
 func _on_hit() -> void:
 	audioPlayer.play()
