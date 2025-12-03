@@ -264,6 +264,7 @@ flip_h = true
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D2"]
 script = ExtResource("2_wp32f")
+damage = 1
 metadata/_custom_type_script = "uid://bx6s2y2lmgf5f"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D2/HitBox"]
