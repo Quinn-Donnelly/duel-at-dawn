@@ -15,6 +15,7 @@ func _ready() -> void:
 	assert(audioPlayer, "CombatController must have an audio player")
 	assert(hitBox, "Combat controller must have a hitbox")
 	hitBox.hit.connect(self._on_hit)
+	hitBox.damage_dealt.connect(self._on_damage_dealt)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("punch"):
@@ -25,7 +26,10 @@ func _process(_delta: float) -> void:
 
 func _on_hit() -> void:
 	audioPlayer.play()
-	hitStop.hit_stop()
+
+func _on_damage_dealt(damage: int) -> void:
+	if damage >= 10:
+		hitStop.hit_stop()
 
 func _punch() -> void:
 	isPunching = true

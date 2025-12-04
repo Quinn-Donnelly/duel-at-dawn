@@ -5,6 +5,7 @@ extends Area2D
 
 ## fires when hit does not mean damage done
 signal hit
+signal damage_dealt(damage: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,8 +16,8 @@ func _on_hit(area: Area2D) -> void:
 	if area is HurtBox and area.owner != owner:
 		hit.emit()
 
-func dealt_damage(_damage_dealt: int) -> void:
-	pass
+func dealt_damage(damage_done: int) -> void:
+	damage_dealt.emit(damage_done)
 
 func get_damage() -> int:
 	return damage

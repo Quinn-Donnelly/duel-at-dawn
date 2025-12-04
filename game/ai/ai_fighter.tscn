@@ -1,13 +1,15 @@
-[gd_scene load_steps=35 format=3 uid="uid://cgv2hosld1mii"]
+[gd_scene load_steps=40 format=3 uid="uid://cgv2hosld1mii"]
 
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="1_7ylxl"]
 [ext_resource type="Script" uid="uid://c0rwv53s0wcjk" path="res://game/ai/ai_controller.gd" id="1_yh5bw"]
+[ext_resource type="Shader" uid="uid://dwoli3yrm268i" path="res://systems/combat/scripts/juice/damage_flash/damage_flash.gdshader" id="2_74gdw"]
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="2_k7qm8"]
 [ext_resource type="Script" uid="uid://bx6s2y2lmgf5f" path="res://systems/combat/scripts/hit_box.gd" id="2_wp32f"]
 [ext_resource type="Texture2D" uid="uid://cx7brbx87qewu" path="res://assets/export/player/punch/player.png" id="2_yh5bw"]
 [ext_resource type="Texture2D" uid="uid://ntxpd481rtl6" path="res://assets/export/player/player-walk.png" id="3_kbkwk"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="7_kbkwk"]
 [ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="8_lxvoj"]
+[ext_resource type="Script" uid="uid://clcvno6gv8y3" path="res://systems/combat/scripts/juice/damage_flash/on_hit_flash.gd" id="9_g65mb"]
 [ext_resource type="Script" uid="uid://d084y47ay1vfo" path="res://game/ai/combat_state_machine/ai_combat_state_machine.gd" id="9_rhtl5"]
 [ext_resource type="Script" uid="uid://bxqrd2hvpmupd" path="res://game/ai/combat_state_machine/idle_ai_state.gd" id="10_rhtl5"]
 [ext_resource type="Resource" uid="uid://7s5870avansj" path="res://game/ai/combat_state_machine/combat_stats/ai_combat_stats.tres" id="10_u6qu6"]
@@ -15,8 +17,10 @@
 [ext_resource type="Script" uid="uid://dhyrkcelthavb" path="res://game/ai/combat_state_machine/attack_ai_state.gd" id="12_cqx6r"]
 [ext_resource type="Script" uid="uid://ik72h4chflbj" path="res://game/ai/combat_state_machine/move_toward_ai_state.gd" id="13_n6bsl"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ylxl"]
-blend_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g65mb"]
+shader = ExtResource("2_74gdw")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ep63"]
 atlas = ExtResource("1_7ylxl")
@@ -118,6 +122,43 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k7qm8"]
 radius = 9.0
 height = 58.0
+
+[sub_resource type="Animation" id="Animation_shas0"]
+resource_name = "flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D2:material:shader_parameter/flash_value")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666667, 0.13333334, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i8g8q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D2:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2f75n"]
+_data = {
+&"RESET": SubResource("Animation_i8g8q"),
+&"flash": SubResource("Animation_shas0")
+}
 
 [sub_resource type="Curve" id="Curve_cqx6r"]
 _limits = [0.05, 0.35, 0.0, 1.0]
@@ -257,7 +298,7 @@ _data = {
 script = ExtResource("1_yh5bw")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_7ylxl")
+material = SubResource("ShaderMaterial_g65mb")
 sprite_frames = SubResource("SpriteFrames_lxvoj")
 animation = &"idle"
 flip_h = true
@@ -288,6 +329,18 @@ shape = SubResource("CapsuleShape2D_k7qm8")
 script = ExtResource("7_kbkwk")
 max_health = 20
 metadata/_custom_type_script = "uid://dbcvmexvelnb0"
+
+[node name="HitFlash" type="Node" parent="HealthComponent" node_paths=PackedStringArray("health_component", "animation_player")]
+script = ExtResource("9_g65mb")
+health_component = NodePath("..")
+animation_player = NodePath("../HurtFlashAnimationPlayer")
+metadata/_custom_type_script = "uid://clcvno6gv8y3"
+
+[node name="HurtFlashAnimationPlayer" type="AnimationPlayer" parent="HealthComponent"]
+root_node = NodePath("../../HurtBox")
+libraries = {
+&"": SubResource("AnimationLibrary_2f75n")
+}
 
 [node name="Fighter" type="Node" parent="."]
 script = ExtResource("8_lxvoj")

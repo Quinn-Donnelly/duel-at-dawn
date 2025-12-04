@@ -247,6 +247,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 11)]
+}
 
 [sub_resource type="Animation" id="Animation_gb4gm"]
 resource_name = "idle"
@@ -511,6 +523,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [5]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox/CollisionShape2D:shape:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.032638807, 0.3667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(18, 11), Vector2(25, 28.5), Vector2(18, 11)]
+}
 
 [sub_resource type="Animation" id="Animation_uv2nh"]
 resource_name = "walk"
@@ -585,7 +609,7 @@ metadata/_custom_type_script = "uid://byjihmwux7yx5"
 
 [node name="HitStop" type="Node" parent="CombatController"]
 script = ExtResource("11_3ep63")
-stop_duration = 0.5
+stop_duration = 2.0
 stop_time_scale = 0.01
 metadata/_custom_type_script = "uid://oddr2wqbddsf"
 
