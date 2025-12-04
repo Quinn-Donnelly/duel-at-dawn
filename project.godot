@@ -21,6 +21,7 @@ Constants="*res://systems/share/autoload/constants.gd"
 EventBus="*res://systems/share/autoload/event_bus.gd"
 GameManager="*res://game/manager/autoloads/game_manager.tscn"
 Ui="*res://game/ui/autoload/ui.tscn"
+GameConstants="*res://game/share/autoloads/game_constants.gd"
 
 [display]
 

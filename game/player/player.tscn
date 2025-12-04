@@ -609,7 +609,7 @@ metadata/_custom_type_script = "uid://byjihmwux7yx5"
 
 [node name="HitStop" type="Node" parent="CombatController"]
 script = ExtResource("11_3ep63")
-stop_duration = 2.0
+stop_duration = 0.4
 stop_time_scale = 0.01
 metadata/_custom_type_script = "uid://oddr2wqbddsf"
 

@@ -21,14 +21,15 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("punch"):
 		if not isPunching:
 			_punch()
-	if Input.is_action_just_pressed("uppercut") and comboWindow:
-		wantsCombo = true
-
+		
+		if comboWindow:
+			wantsCombo = true
+	
 func _on_hit() -> void:
 	audioPlayer.play()
 
 func _on_damage_dealt(damage: int) -> void:
-	if damage >= 10:
+	if damage >= GameConstants.BIG_HIT:
 		hitStop.hit_stop()
 
 func _punch() -> void:

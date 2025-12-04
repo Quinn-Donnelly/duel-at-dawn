@@ -12,5 +12,6 @@ func _ready() -> void:
 	assert(animation_player, "Hit Flash requires an animation player")
 	health_component.health_lowered.connect(self._animate_flash)
 
-func _animate_flash(_amount: int) -> void:
-	animation_player.play("flash")
+func _animate_flash(amount: int) -> void:
+	if not animation_player.is_playing() and amount >= GameConstants.BIG_HIT:
+		animation_player.play("flash")
