@@ -4,6 +4,7 @@ extends Node
 @export var hitBox: HitBox
 @export var audioPlayer: AudioStreamPlayer2D
 @export var animationPlayer: AnimationPlayer
+@onready var hitStop: HitStop = $HitStop
 
 @export var comboWindow: bool = false
 var wantsCombo: bool = false
@@ -24,6 +25,7 @@ func _process(_delta: float) -> void:
 
 func _on_hit() -> void:
 	audioPlayer.play()
+	hitStop.hit_stop()
 
 func _punch() -> void:
 	isPunching = true

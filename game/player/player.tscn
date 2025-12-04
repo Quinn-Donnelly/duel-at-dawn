@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bunll36biwwdj"]
+[gd_scene load_steps=43 format=3 uid="uid://bunll36biwwdj"]
 
 [ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_8soms"]
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="2_j0mij"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://hqy6kpla8egj" path="res://systems/combat/scripts/hurt_box.gd" id="8_epvkq"]
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="8_j0mij"]
 [ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="9_5ghna"]
+[ext_resource type="Script" uid="uid://oddr2wqbddsf" path="res://systems/combat/scripts/juice/hit_stop.gd" id="11_3ep63"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ep63"]
 atlas = ExtResource("2_j0mij")
@@ -581,6 +582,12 @@ hitBox = NodePath("../AnimatedSprite2D/HitBox")
 audioPlayer = NodePath("../HitAudio")
 animationPlayer = NodePath("../AnimationPlayer")
 metadata/_custom_type_script = "uid://byjihmwux7yx5"
+
+[node name="HitStop" type="Node" parent="CombatController"]
+script = ExtResource("11_3ep63")
+stop_duration = 0.5
+stop_time_scale = 0.01
+metadata/_custom_type_script = "uid://oddr2wqbddsf"
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_j0mij")
