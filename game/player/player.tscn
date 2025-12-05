@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bunll36biwwdj"]
+[gd_scene load_steps=44 format=3 uid="uid://bunll36biwwdj"]
 
 [ext_resource type="Script" uid="uid://dnjjgaf7whjnl" path="res://game/player/player.gd" id="1_8soms"]
 [ext_resource type="Texture2D" uid="uid://bfpnqmqxrsmt" path="res://assets/export/player/player-idle.png" id="2_j0mij"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dbcvmexvelnb0" path="res://systems/combat/scripts/health_component.gd" id="8_j0mij"]
 [ext_resource type="Script" uid="uid://3u30isggth2w" path="res://game/fighter/fighter.gd" id="9_5ghna"]
 [ext_resource type="Script" uid="uid://oddr2wqbddsf" path="res://systems/combat/scripts/juice/hit_stop.gd" id="11_3ep63"]
+[ext_resource type="AudioStream" uid="uid://bdk50rx04x3p7" path="res://assets/sounds/hit/smack.wav" id="12_rqcxa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ep63"]
 atlas = ExtResource("2_j0mij")
@@ -597,13 +598,11 @@ disabled = true
 script = ExtResource("3_5fytw")
 metadata/_custom_type_script = "uid://culeydjthv3kf"
 
-[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_4ste8")
-
-[node name="CombatController" type="Node" parent="." node_paths=PackedStringArray("hitBox", "audioPlayer", "animationPlayer")]
+[node name="CombatController" type="Node" parent="." node_paths=PackedStringArray("hitBox", "hitAudioPlayer", "bigHitAudioPlayer", "animationPlayer")]
 script = ExtResource("7_anr75")
 hitBox = NodePath("../AnimatedSprite2D/HitBox")
-audioPlayer = NodePath("../HitAudio")
+hitAudioPlayer = NodePath("Audio/HitAudio")
+bigHitAudioPlayer = NodePath("Audio/BigHitAudio")
 animationPlayer = NodePath("../AnimationPlayer")
 metadata/_custom_type_script = "uid://byjihmwux7yx5"
 
@@ -612,6 +611,14 @@ script = ExtResource("11_3ep63")
 stop_duration = 0.4
 stop_time_scale = 0.01
 metadata/_custom_type_script = "uid://oddr2wqbddsf"
+
+[node name="Audio" type="Node" parent="CombatController"]
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="CombatController/Audio"]
+stream = ExtResource("5_4ste8")
+
+[node name="BigHitAudio" type="AudioStreamPlayer2D" parent="CombatController/Audio"]
+stream = ExtResource("12_rqcxa")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_j0mij")
